@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+</head>
+<body>
+    <h1>House Price Prediction</h1>
+    <form action="/predict" method="post">
+        {% for feature_name in [
+            'CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT'
+        ] %}
+            <label for="{{ feature_name }}">{{ feature_name }}:</label>
+            <input type="text" name="{{ feature_name }}" required><br>
+        {% endfor %}
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <p>Predicted House Price: ${{ prediction }}</p>
+    {% endif %}
+</body>
+</html>
